@@ -139,7 +139,7 @@ function renderCategories() {
   const tripledItems = [...categories, ...categories, ...categories];
   wrap.innerHTML = tripledItems.map(c => `
     <div class="category-card" data-id="${c.id}">
-      <div class="category-card-img"><img src="${c.image}" alt="${c.name}" loading="lazy"></div>
+      <div class="category-icon">${c.name.charAt(0)}</div>
       <h4>${c.name}</h4>
     </div>
   `).join('');
@@ -148,6 +148,16 @@ function renderCategories() {
   setTimeout(() => {
     wrap.scrollLeft = wrap.scrollWidth / 3;
   }, 100);
+
+  // Click handling
+  wrap.addEventListener('click', (e) => {
+    const card = e.target.closest('.category-card');
+    if (card) {
+      const id = parseInt(card.dataset.id);
+      const cat = categories.find(c => c.id === id);
+      if (cat) window.location.href = `products.html?category=${encodeURIComponent(cat.name)}`;
+    }
+  });
 }
 
 // ─── RENDER: PRODUCT CARD ───────────────────────────────────────────
@@ -764,9 +774,10 @@ function initFromUrl() {
     if (min) $('#min-price').value = min;
     if (max) $('#max-price').value = max;
     
-    // Highlight active button
-    if (cat) {
-      const btn = $$('#product-filter-bar .filter-btn').find(b => b.dataset.filter === cat);
+    // Highlight active button (handles both parent and subcategories)
+    const targetCat = cat || categories.find(c => (c.subcategories || []).includes(sub))?.name;
+    if (targetCat) {
+      const btn = Array.from($$('#product-filter-bar .filter-btn')).find(b => b.dataset.filter === targetCat);
       if (btn) {
         $$('#product-filter-bar .filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -884,7 +895,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDoctors();
   renderPharmacists();
   renderBrands();
-  renderAllProducts();
   renderAllDoctors();
   renderAllPharmacists();
   renderWishlist();
