@@ -650,7 +650,36 @@ function setupNavSearch() {
   if (searchQ && window.location.pathname.includes('products.html')) {
     input.value = searchQ;
     renderAllProducts('All', searchQ);
+    
+    // Also fill banner search if exists
+    const bannerInput = $('#banner-search-input');
+    if (bannerInput) bannerInput.value = searchQ;
   }
+
+  // Banner search Enter listener
+  const bannerInput = $('#banner-search-input');
+  if (bannerInput) {
+    bannerInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleBannerSearch();
+    });
+  }
+}
+
+function handleBannerSearch() {
+  const input = $('#banner-search-input');
+  if (!input) return;
+  const q = input.value;
+  renderAllProducts('All', q);
+  
+  // Sync with nav search input
+  const navInput = $('#nav-search-input');
+  if (navInput) navInput.value = q;
+  
+  // Update URL
+  const url = new URL(window.location);
+  if (q) url.searchParams.set('search', q);
+  else url.searchParams.delete('search');
+  window.history.pushState({}, '', url);
 }
 
 // ─── FILTER BUTTONS (sub-pages) ─────────────────────────────────────
