@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="OnlinePharmacyPK — Pakistan's trusted online pharmacy. Order medicines, consult doctors and pharmacists, and get doorstep delivery.">
+  <title>OnlinePharmacyPK — Online Pharmacy in Pakistan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="OnlinePharmacyPK Logo">
+        <span>OnlinePharmacyPK</span>
+      </a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li class="dropdown">
+          <a href="products.html">Categories <i class="fas fa-chevron-down"
+              style="font-size:.6rem;margin-left:2px"></i></a>
+          <ul class="dropdown-menu" id="nav-categories-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a href="doctors.html">Doctors <i class="fas fa-chevron-down" style="font-size:.6rem;margin-left:2px"></i></a>
+          <ul class="dropdown-menu" id="nav-doctors-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a href="pharmacists.html">Pharmacists <i class="fas fa-chevron-down"
+              style="font-size:.6rem;margin-left:2px"></i></a>
+          <ul class="dropdown-menu" id="nav-pharmacists-dropdown"></ul>
+        </li>
+        <li><a href="#deals-section">Deals</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <button class="nav-icon-btn" onclick="location.href='wishlist.html'" aria-label="Wishlist">
+          <i class="far fa-heart"></i>
+          <span class="badge" id="wishlist-badge" style="display:none">0</span>
+        </button>
+        <button class="nav-icon-btn" onclick="toggleCart()" aria-label="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge" id="cart-badge" style="display:none">0</span>
+        </button>
+        <div class="nav-search" id="nav-search">
+          <input type="text" placeholder="Search..." id="nav-search-input">
+          <button id="nav-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="background-image:url('assets/pharmacy.png')"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>Your Trusted Online Pharmacy</h1>
+      <p>Order medicines, upload prescriptions, and consult qualified healthcare professionals — all from the comfort of
+        your home.</p>
+      <div class="hero-ctas">
+        <button class="hero-cta-btn" onclick="openUploadModal()"><i class="fas fa-file-prescription"></i> <span>Upload Prescription</span></button>
+        <a href="pharmacists.html" class="hero-cta-btn"><i class="fas fa-pills"></i> <span>Consult Pharmacist</span></a>
+        <a href="doctors.html" class="hero-cta-btn"><i class="fas fa-stethoscope"></i> <span>Consult Doctor</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CATEGORIES ═══════════════════ -->
+  <section class="section" id="categories-section">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <p class="section-subtitle">Browse our wide range of healthcare categories</p>
+      <div class="slider-container horizontal" id="categories-slider">
+        <button class="slider-btn prev" onclick="moveSlider('categories-slider', -1)"><i
+            class="fas fa-chevron-left"></i></button>
+        <div class="categories-scroll" id="categories-scroll"></div>
+        <button class="slider-btn next" onclick="moveSlider('categories-slider', 1)"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TOP SELLING PRODUCTS ═══════════════════ -->
+  <section class="section" id="products-section" style="background:#fff">
+    <div class="container">
+      <h2 class="section-title">Top Selling Products</h2>
+      <p class="section-subtitle">Our most popular healthcare products</p>
+      <div class="slider-container horizontal" id="products-slider">
+        <button class="slider-btn prev" onclick="moveSlider('products-slider', -1)"><i
+            class="fas fa-chevron-left"></i></button>
+        <div class="products-grid" id="products-grid"></div>
+        <button class="slider-btn next" onclick="moveSlider('products-slider', 1)"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+      <div style="text-align:center;margin-top:30px">
+        <a href="products.html?section=top" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DOCTORS ═══════════════════ -->
+  <section class="section" id="doctors-section">
+    <div class="container">
+      <h2 class="section-title">Our Doctors</h2>
+      <p class="section-subtitle">Consult with qualified medical professionals online</p>
+      <div class="profiles-grid" id="doctors-grid"></div>
+      <div style="text-align:center;margin-top:30px">
+        <a href="doctors.html" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PHARMACISTS ═══════════════════ -->
+  <section class="section" id="pharmacists-section" style="background:#fff">
+    <div class="container">
+      <h2 class="section-title">Our Pharmacists</h2>
+      <p class="section-subtitle">Get expert advice on your medications</p>
+      <div class="profiles-grid" id="pharmacists-grid"></div>
+      <div style="text-align:center;margin-top:30px">
+        <a href="pharmacists.html" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DEALS ═══════════════════ -->
+  <section class="section deals-section" id="deals-section">
+    <div class="container">
+      <h2 class="section-title">🔥 Hot Deals</h2>
+      <p class="section-subtitle">Limited-time offers on popular products</p>
+      <div class="slider-container horizontal" id="deals-slider">
+        <button class="slider-btn prev" onclick="moveSlider('deals-slider', -1)"><i
+            class="fas fa-chevron-left"></i></button>
+        <div class="products-grid" id="deals-grid"></div>
+        <button class="slider-btn next" onclick="moveSlider('deals-slider', 1)"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+      <div style="text-align:center;margin-top:30px">
+        <a href="products.html?section=deals" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ RECOMMENDED ═══════════════════ -->
+  <section class="section" id="recommended-section" style="background:#fff">
+    <div class="container">
+      <h2 class="section-title">Recommended for You</h2>
+      <p class="section-subtitle">Handpicked products just for you</p>
+      <div class="slider-container horizontal" id="recommended-slider">
+        <button class="slider-btn prev" onclick="moveSlider('recommended-slider', -1)"><i
+            class="fas fa-chevron-left"></i></button>
+        <div class="products-grid" id="recommended-grid"></div>
+        <button class="slider-btn next" onclick="moveSlider('recommended-slider', 1)"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+      <div style="text-align:center;margin-top:30px">
+        <a href="products.html?section=recommended" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BRANDS ═══════════════════ -->
+  <section class="section" id="brands-section">
+    <div class="container">
+      <h2 class="section-title">Trusted Brands</h2>
+      <p class="section-subtitle">We stock products from leading pharmaceutical companies</p>
+      <div class="slider-container horizontal" id="brands-slider">
+        <button class="slider-btn prev" onclick="moveSlider('brands-slider', -1)"><i
+            class="fas fa-chevron-left"></i></button>
+        <div class="brands-scroll" id="brands-scroll"></div>
+        <button class="slider-btn next" onclick="moveSlider('brands-slider', 1)"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>OnlinePharmacyPK</h4>
+          <p>Pakistan's most trusted online pharmacy. Delivering quality healthcare products to your doorstep since
+            2020.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#deals-section">Deals</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="pharmacists.html">Pharmacists</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="products.html">Medicine</a></li>
+            <li><a href="products.html">Personal Care</a></li>
+            <li><a href="products.html">Baby Care</a></li>
+            <li><a href="products.html">Medical Devices</a></li>
+            <li><a href="products.html">Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="tel:03441636700"><i class="fas fa-phone"></i> 0344-1636700</a></li>
+            <li><a href="mailto:info@onlinepharmacypk.com"><i class="fas fa-envelope"></i> info@onlinepharmacypk.com</a>
+            </li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Lahore, Pakistan</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 OnlinePharmacyPK. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ FLOATING CALL ═══════════════════ -->
+  <a href="https://wa.me/923441636700" class="floating-call" aria-label="Call Us" target="_blank"><i
+      class="fab fa-whatsapp"></i></a>
+
+  <!-- ═══════════════════ CART SIDEBAR ═══════════════════ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
+      <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty"><i class="fas fa-shopping-bag"></i>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Total:</span><span class="amount" id="cart-total-amount">Rs. 0</span></div>
+      <button class="checkout-btn" onclick="whatsappCheckout()"><i class="fab fa-whatsapp"></i> Checkout via
+        WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MODALS ═══════════════════ -->
+  <div class="modal-overlay" id="quickview-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Product Details</h3><button class="modal-close" onclick="closeModal('quickview-modal')"><i
+            class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Book Appointment</h3><button class="modal-close" onclick="closeModal('booking-modal')"><i
+            class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="upload-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fas fa-file-prescription"></i> Upload Prescription</h3><button class="modal-close"
+          onclick="closeModal('upload-modal')"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="upload-zone" id="upload-zone">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & drop your prescription here</p>
+          <span>or click to browse (JPG, PNG, PDF)</span>
+          <input type="file" id="prescription-input" accept="image/*,.pdf">
+        </div>
+        <div class="upload-preview" id="upload-preview">
+          <img id="upload-preview-img" src="" alt="Preview">
+          <div class="file-name" id="upload-file-name"></div>
+        </div>
+        <button class="upload-submit-btn" onclick="submitPrescription()"><i class="fas fa-paper-plane"></i> Submit
+          Prescription</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
